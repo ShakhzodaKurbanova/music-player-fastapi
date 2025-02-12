@@ -1,9 +1,18 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 import database as db
 from schemas import ArtistCreate, SongCreate, ArtistUpdate, PlaylistCreate
+from fastapi.templating import Jinja2Templates
+from fastapi.requests import Request
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
+db.init_db()
+
+@app.get("/")
+def home_page(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 ### ИСПОЛНИТЕЛИ ###
 
