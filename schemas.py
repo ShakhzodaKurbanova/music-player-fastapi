@@ -1,11 +1,15 @@
 from pydantic import BaseModel
-from typing import List, Optional
 
-class NewArtist(BaseModel):
-    artist_name: str
+class ArtistCreate(BaseModel):
+    name: str
 
-
-class NewSong(BaseModel):
+class SongCreate(BaseModel):
     title: str
-    artist: str
+    artist_id: int
 
+class ArtistUpdate(BaseModel):
+    old_name: str
+    new_name: str
+
+class PlaylistCreate(BaseModel):
+    name: str
